@@ -27,7 +27,7 @@ class Course(models.Model):
 class Module(models.Model):
     course = models.ForeignKey('Course',on_delete=models.CASCADE)
     titlem = models.CharField(null=True, max_length = 20)
-    index_number = models.IntegerField(unique=True, null=True) 
+    index_number = models.IntegerField(null=True) 
     content = models.TextField(null=True)
 
     def __str__(self):
