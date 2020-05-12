@@ -9,6 +9,11 @@ class studentserializers(serializers.ModelSerializer):
         model = Student
         fields = '__all__'
 
+class teacherserializers(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+
 class courseserializers(serializers.ModelSerializer):
     class Meta:
         model = Course
