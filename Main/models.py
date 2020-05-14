@@ -2,10 +2,11 @@ from django.db import models
 # Create your models here.
 
 def upload_path(instance,filename):
-    if instance == Course:
-        return '/'.join(['PDF',str(instance.id),filename])
+
+    if str(instance.title) == str(Course.objects.get(id=instance.id).title):
+        return '/'.join(['PDF',str(instance.title),filename])
     else:
-        return '/'.join(['PDF',str(instance.course),filename])
+        return '/'.join(['PDF',str(instance.course),modules,filename])
 
 class Student(models.Model):
     name = models.CharField(max_length=20, null=True)
@@ -33,7 +34,7 @@ class Teacher(models.Model):
         return self.name
 
 class Course(models.Model):
-    teacher = models.ForeignKey('Teacher',on_delete=models.CASCADE)
+    teacher = models.ForeignKey('Teacher',related_name='courses',on_delete=models.CASCADE)
     title = models.CharField(null=True,max_length=50,unique=True)
     PreviewText = models.TextField(null=True)
     PreviewFile = models.FileField(null=True,blank=True,upload_to = upload_path)

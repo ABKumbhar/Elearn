@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
+    'corsheaders',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,3 +130,7 @@ STATICFILES_DIRS = [
 os.path.join(BASE_DIR,'static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+CORS_ORIGIN_WHITELIST =[
+    "http://localhost:3000",
+]

@@ -10,6 +10,11 @@ class studentserializers(serializers.ModelSerializer):
         fields = '__all__'
 
 class teacherserializers(serializers.ModelSerializer):
+    courses = serializers.HyperlinkedRelatedField(
+    many=True,
+    read_only=True,
+    view_name='course-detail'
+    )
     class Meta:
         model = Teacher
         fields = '__all__'
