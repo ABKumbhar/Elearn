@@ -12,6 +12,7 @@ router.register(r'module', views.ModuleViewSet)
 
 urlpatterns= [
       path('', include(router.urls)),
+      path('front/',views.Test),
 
       # path('', views.Overview, name="Overview"),
       # path('course/', views.CourseOverview,name = "course"),

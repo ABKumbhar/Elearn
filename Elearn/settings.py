@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,12 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+MEDIA_URL = '/document/'
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR,'static')
 ]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/document')
 
 CORS_ORIGIN_WHITELIST =[
     "http://localhost:3000",
+    "http://localhost:8000",
 ]

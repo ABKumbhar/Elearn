@@ -2,16 +2,15 @@ from django.db import models
 # Create your models here.
 
 def upload_path(instance,filename):
-
-    if str(instance.title) == str(Course.objects.get(id=instance.id).title):
-        return '/'.join(['PDF',str(instance.title),filename])
-    else:
-        return '/'.join(['PDF',str(instance.course),modules,filename])
+    return '/'.join(['Files_courses',filename])
 
 class Student(models.Model):
     name = models.CharField(max_length=20, null=True)
-    profile_pic = models.ImageField(null=True,blank=True)
+    profile_pic = models.ImageField(null=True,blank=True,upload_to='profilepic/')
     Linkdein = models.URLField(max_length=500,null=True,blank=True)
+    Phone = models.CharField(max_length=12, null=True)
+    skype_ID = models.CharField(max_length=500, null=True)
+
 
 
     def __str__(self):
@@ -21,12 +20,13 @@ class Student(models.Model):
 
 class Teacher(models.Model):
     name = models.CharField(max_length=20, null=True)
-    profile_pic = models.ImageField(null=True,blank=True)
+    profile_pic = models.ImageField(null=True,blank=True,upload_to='profilepic/')
     Linkdein = models.URLField(max_length=500,null=True)
     Institute_Organization = models.CharField(max_length=200,null=True)
     Education = models.CharField(max_length=200,null=True)
     Specialization = models.CharField(max_length=200,null=True)
     Quote = models.TextField(null=True, blank=True)
+    skype_ID = models.CharField(max_length=500, null=True)
 
 
 

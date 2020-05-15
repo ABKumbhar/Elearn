@@ -24,6 +24,9 @@ class ModuleViewSet(viewsets.ModelViewSet):
     queryset = Module.objects.all()
     serializer_class = moduleserializers
 
+def Test(request):
+    return render(request,'Main/index.html')
+
 # Create your views here.
 # @api_view(['GET'])
 # def Overview(request):
