@@ -1,1 +1,1 @@
-web: gunicorn Elearn.wsgi --log-file -
+web: gunicorn Elearn.wsgi
