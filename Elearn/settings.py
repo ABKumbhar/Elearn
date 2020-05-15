@@ -25,7 +25,7 @@ SECRET_KEY = '#dyt^$y@b)qcfq9yf__v$29b1@=en9(co25wbwg(d=yir^w=p6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['elearn-rest.herokuapp.com','127.0.0.1:8000']
 
 
 # Application definition
