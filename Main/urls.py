@@ -8,6 +8,9 @@ router.register(r'course', views.CourseViewSet)
 router.register(r'teacher', views.TeacherViewSet)
 router.register(r'student', views.StudentViewSet)
 router.register(r'module', views.ModuleViewSet)
+router.register(r'modulefile', views.ModuleFileViewSet)
+router.register(r'coursefile', views.CourseFileViewSet)
+
 
 
 urlpatterns= [

@@ -25,6 +25,11 @@ class courseserializers(serializers.ModelSerializer):
     read_only=True,
     view_name='module-detail'
     )
+    coursefile = serializers.HyperlinkedRelatedField(
+    many=True,
+    read_only=True,
+    view_name='coursefile-detail'
+    )
 
     class Meta:
         model = Course
@@ -32,6 +37,22 @@ class courseserializers(serializers.ModelSerializer):
 
 
 class moduleserializers(serializers.ModelSerializer):
+    modulefile = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='modulefile-detail'
+        )
+
     class Meta:
         model = Module
+        fields = '__all__'
+
+class modulefileserializers(serializers.ModelSerializer):
+    class Meta:
+        model = ModuleFile
+        fields = '__all__'
+
+class coursefileserializers(serializers.ModelSerializer):
+    class Meta:
+        model = CourseFile
         fields = '__all__'

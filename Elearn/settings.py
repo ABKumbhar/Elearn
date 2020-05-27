@@ -36,12 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'Main',
-    'djoser',
     'rest_framework.authtoken',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
     'corsheaders',
+     'Main',
+    'djoser',
+    'authdjoser',
     'django.contrib.staticfiles',
 ]
 
@@ -88,6 +89,37 @@ DATABASES = {
     }
 }
 
+#Rest Framework configuration
+REST_FRAMEWORK = {
+ 'DEFAULT_AUTHENTICATION_CLASSES' : (
+        'rest_framework.authentication.TokenAuthentication',
+         'rest_framework.authentication.SessionAuthentication',
+
+
+
+ ),
+ 'DEFAULT_PERMISSIONS_CLASSES' : (
+  'rest_framework.permissions.IsAuthenticated',
+ ),
+
+}
+
+#Auth user model 
+AUTH_USER_MODEL = 'authdjoser.User'
+#Djoser
+DJOSER = {
+'PASSWORD_RESET_CONFIRM_URL' : '#/auth/users/reset_password_confirm/{uid}/{token}',
+'USERNAME_RESET_CONFIRM_URL' : '#/username/reset/confirm/{uid}/{token}',
+'ACTIVATION_URL' : '#/activate/{uid}/{token}',
+'PASSWORD_CHANGED_EMAIL_CONFIRMATION' :True,
+'LOGIN_FIELD' : 'email' ,
+'USER_CREATE_PASSWORD_RETYPE' : True,
+'SERIALIZERS' : {
+'user' : 'authdjoser.serializers.UserCreateSerializer',
+'user_create' : 'authdjoser.serializers.UserCreateSerializer',
+
+}
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -132,8 +164,17 @@ STATICFILES_DIRS = [
 os.path.join(BASE_DIR,'static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/document')
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST =[
-    "http://localhost:3000",
-    "http://localhost:8000",
-]
+# CORS_ORIGIN_WHITELIST =[
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+# ]
+
+#Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bojour.techies.web@gmail.com'
+EMAIL_HOST_PASSWORD = 'bonjour.techies@123'

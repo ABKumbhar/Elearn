@@ -37,7 +37,7 @@ class Course(models.Model):
     teacher = models.ForeignKey('Teacher',related_name='courses',on_delete=models.CASCADE)
     title = models.CharField(null=True,max_length=50,unique=True)
     PreviewText = models.TextField(null=True)
-    PreviewFile = models.FileField(null=True,blank=True,upload_to = upload_path)
+    #PreviewFile = models.FileField(null=True,blank=True,upload_to = upload_path)
     ratings = models.FloatField(null=True)
     assignment = models.FileField(null=True, blank=True,upload_to = upload_path)
     date_created = models.DateField(auto_now=True)
@@ -49,9 +49,20 @@ class Module(models.Model):
     course = models.ForeignKey('Course',related_name='modules',on_delete=models.CASCADE)
     title = models.CharField(null=True, max_length = 50,unique=True)
     number = models.IntegerField(null=True)
-    File = models.FileField(null=True,blank=True,upload_to =upload_path)
+    #File = models.FileField(null=True,blank=True,upload_to =upload_path)
     content = models.TextField(null=True)
     flag = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
+class CourseFile(models.Model):
+    coursefile = models.ForeignKey('Course',related_name='coursefile',on_delete=models.CASCADE)
+    PreviewFile = models.FileField(null=True,blank=True,upload_to = upload_path)
+
+
+class ModuleFile(models.Model):
+    module= models.ForeignKey('Module',related_name='modulefile',on_delete=models.CASCADE)
+    File = models.FileField(null=True,blank=True,upload_to =upload_path)
+
+
