@@ -92,8 +92,12 @@ DATABASES = {
 #Rest Framework configuration
 REST_FRAMEWORK = {
  'DEFAULT_AUTHENTICATION_CLASSES' : (
+
         'rest_framework.authentication.TokenAuthentication',
+
          'rest_framework.authentication.SessionAuthentication',
+
+
 
 
 
@@ -115,8 +119,8 @@ DJOSER = {
 'LOGIN_FIELD' : 'email' ,
 'USER_CREATE_PASSWORD_RETYPE' : True,
 'SERIALIZERS' : {
-'user' : 'authdjoser.serializers.UserCreateSerializer',
-'user_create' : 'authdjoser.serializers.UserCreateSerializer',
+'user' : 'authdjoser.serializers.UserSerializer',
+'user_create' : 'authdjoser.serializers.UserSerializer',
 
 }
 }
