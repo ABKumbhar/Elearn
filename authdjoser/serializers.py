@@ -12,29 +12,29 @@ class UserSerializer(UserSerializer):
         model = User
         fields = ('id','email','username','password','first_name','last_name','Type_of_user')
 
-    def create(self, validated_data):
+    # def create(self, validated_data):
         
-        user = User.objects.create(**validated_data)
+    #     user = User.objects.create(**validated_data)
         
-        group = Group.objects.get(name='Student')
-        user.groups.add(group)
+    #     group = Group.objects.get(name='Student')
+    #     user.groups.add(group)
         
-        if user.objects.get(Type_of_user='S') :
+    #     if user.objects.get(Type_of_user='S') :
 
 
-            student = Student(user=user, name=user.first_name)
-            student.save()
+    #         student = Student(user=user, name=user.first_name)
+    #         student.save()
 
         
 
-        else :
-            group = Group.objects.get(name='Teacher')
-            user.groups.add(group)
+    #     else :
+    #         group = Group.objects.get(name='Teacher')
+    #         user.groups.add(group)
 
-            teacher = Teacher(user=user, name=user.first_name)
-            teacher.save()
+    #         teacher = Teacher(user=user, name=user.first_name)
+    #         teacher.save()
             
-        return user    
+    #     return user    
 
         
 

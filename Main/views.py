@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .serializers import *
 from .models import *
 from rest_framework import viewsets
+from django.contrib.auth.models import Group
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -14,7 +15,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = teacherserializers
-    users = User.objects.all().filter(Typeofuser = 'T')
+    users = User.objects.all().filter(Type_of_user = 'T')
     group = Group.objects.get(name='Teacher')
     for u in users:
         try:
@@ -29,7 +30,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = studentserializers
-    users = User.objects.all().filter(Typeofuser = 'S')
+    users = User.objects.all().filter(Type_of_user = 'S')
     group = Group.objects.get(name='Student')
     for u in users:
         try:
