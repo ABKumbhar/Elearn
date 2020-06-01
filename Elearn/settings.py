@@ -43,6 +43,8 @@ INSTALLED_APPS = [
      'Main',
     'djoser',
     'authdjoser',
+    'rest_framework_swagger',
+
     'django.contrib.staticfiles',
 ]
 
@@ -115,6 +117,7 @@ DJOSER = {
 'PASSWORD_RESET_CONFIRM_URL' : '#/auth/users/reset_password_confirm/{uid}/{token}',
 'USERNAME_RESET_CONFIRM_URL' : '#/username/reset/confirm/{uid}/{token}',
 'ACTIVATION_URL' : '#/activate/{uid}/{token}',
+'SEND_ACTIVATION_EMAIL': True,
 'PASSWORD_CHANGED_EMAIL_CONFIRMATION' :True,
 'LOGIN_FIELD' : 'email' ,
 'USER_CREATE_PASSWORD_RETYPE' : True,

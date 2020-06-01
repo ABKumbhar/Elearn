@@ -6,24 +6,28 @@ from Main.serializers import *
 from django.db import models
 from django.contrib.auth.models import Group
 
-class UserSerializer(UserSerializer):
 
-    class Meta(UserCreateSerializer.Meta):
+class UserSerializer(UserSerializer):
+    student = studentserializers()
+    teacher = teacherserializers()
+    class Meta(UserSerializer.Meta):
         model = User
-        fields = ('id','email','username','password','first_name','last_name','Type_of_user')
+        fields = ('id','email','username','password','first_name','last_name','Typeofuser','student','teacher')
+    
+ 
 
     def create(self, validated_data):
         
         user = User.objects.create(**validated_data)
         
-        group = Group.objects.get(name='Student')
-        user.groups.add(group)
+
         
-        if user.objects.get(Type_of_user='S') :
+        if (user.Typeofuser == 'S') :
+            group = Group.objects.get(name='Student')
+            user.groups.add(group)
 
-
-            student = Student(user=user, name=user.first_name)
-            student.save()
+            stu = Student(user=user)
+            stu.save()
 
         
 
@@ -31,9 +35,9 @@ class UserSerializer(UserSerializer):
             group = Group.objects.get(name='Teacher')
             user.groups.add(group)
 
-            teacher = Teacher(user=user, name=user.first_name)
-            teacher.save()
-            
+            tea = Teacher(user=user)
+            tea.save()
+
         return user    
 
         

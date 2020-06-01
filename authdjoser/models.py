@@ -7,20 +7,20 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    Teacher = 'T'
-    Student = 'S'
-    Typeofuser = [
-    (Teacher , 'Teacher'),
-    (Student, 'Student'),
+    TEACHER = 'T'
+    STUDENT = 'S'
+    usertype = [
+    (TEACHER , 'TEACHER'),
+    (STUDENT , 'STUDENT'),
     ]
-    Type_of_user = models.CharField(
+    Typeofuser = models.CharField(
         max_length=1,
-        choices=Typeofuser,
-        default=Student,
+        choices=usertype,
+        default=STUDENT,
     )
+    #flag = models.BooleanField(default=False)
 
-
-    REQUIRED_FIELDS = ['username', 'first_name','last_name', 'Type_of_user']
+    REQUIRED_FIELDS = ['username', 'first_name','last_name', 'Typeofuser']
     USERNAME_FIELD = 'email'
     def get_username(self):
         return self.email
