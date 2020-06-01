@@ -14,11 +14,32 @@ class CourseViewSet(viewsets.ModelViewSet):
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = teacherserializers
+    users = User.objects.all().filter(Typeofuser = 'T')
+    group = Group.objects.get(name='Teacher')
+    for u in users:
+        try:
+            Teacher.objects.get(user = u)
+        
+        except:
+            u.groups.add(group)
+            teacher = Teacher(user = u,name = (u.first_name))
+            teacher.save()
 
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = studentserializers
+    users = User.objects.all().filter(Typeofuser = 'S')
+    group = Group.objects.get(name='Student')
+    for u in users:
+        try:
+            Student.objects.get(user = u)
+        
+        except:
+            u.groups.add(group)
+            student = Student(user = u,name = (u.first_name))
+            student.save()
+
 
 class ModuleViewSet(viewsets.ModelViewSet):
     queryset = Module.objects.all()
