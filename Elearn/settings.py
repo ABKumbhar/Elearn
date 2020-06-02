@@ -123,7 +123,7 @@ DJOSER = {
 'USER_CREATE_PASSWORD_RETYPE' : True,
 'SERIALIZERS' : {
 'user' : 'authdjoser.serializers.UserSerializer',
-'user_create' : 'authdjoser.serializers.UserSerializer',
+'user_create' : 'authdjoser.serializers.UserCreateSerializer',
 
 }
 }

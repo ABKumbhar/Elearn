@@ -19,13 +19,14 @@ class TeacherViewSet(viewsets.ModelViewSet):
     users = User.objects.all().filter(Typeofuser = 'T')
     group = Group.objects.get(name='Teacher')
     for u in users:
+        u.groups.add(group)
+
         try:
             Teacher.objects.get(user = u)
         
         except:
-            u.groups.add(group)
-            teacher = Teacher(user = u,name = (u.first_name))
-            teacher.save()
+            Teacher.objects.create(user = u,name = (u.first_name))
+            
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -34,14 +35,16 @@ class StudentViewSet(viewsets.ModelViewSet):
 
     users = User.objects.all().filter(Typeofuser = 'S')
     group = Group.objects.get(name='Student')
+
     for u in users:
+        u.groups.add(group)
+
         try:
             Student.objects.get(user = u)
         
         except:
-            u.groups.add(group)
-            student = Student(user = u,name = (u.first_name))
-            student.save()
+            Student.objects.create(user = u,name = (u.first_name))
+            
 
 
 class ModuleViewSet(viewsets.ModelViewSet):

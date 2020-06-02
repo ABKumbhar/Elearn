@@ -60,7 +60,7 @@ class Module(models.Model):
         return self.title
 
 class CourseFile(models.Model):
-    coursefile = models.ForeignKey('Course',related_name='coursefile',on_delete=models.CASCADE)
+    course = models.ForeignKey('Course',related_name='coursefile',on_delete=models.CASCADE)
     PreviewFile = models.FileField(null=True,blank=True,upload_to = upload_path)
 
 
